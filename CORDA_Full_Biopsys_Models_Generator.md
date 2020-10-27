@@ -10,8 +10,6 @@ Recon2.reactions.OIVD1m.gene_reaction_rule='HGNC:2698 and HGNC:987 and HGNC:986 
 Recon2.reactions.OIVD2m.gene_reaction_rule='HGNC:2698 and HGNC:987 and HGNC:986 and HGNC:2898 or HGNC:2698 and HGNC:2898 and HGNC:987 and HGNC:986'
 ```
 
-    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
-
 
 
 ```python
@@ -490,10 +488,6 @@ confidence_scores_matrix["MeanNormalBiopsy"].hist(bins=10)
 confidence_scores_matrix["MeanCancerBiopsy"].hist(bins=10)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f93aaf43fd0>
 
 
 
