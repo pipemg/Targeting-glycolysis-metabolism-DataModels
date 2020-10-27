@@ -2,10 +2,11 @@
 
 ```python
 import cobra
-import math
 #!wget http://www.ebi.ac.uk/biomodels-main/download?mid=MODEL1603150001 -O recon2.2.xml
 Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 ```
+
+    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
 
 
 
@@ -13,6 +14,19 @@ Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 hacat_model=cobra.io.read_sbml_model("Models/hgu133APlus2_hacat_model_0418_DEMEM6429_n5.sbml")
 
 ```
+
+
+```python
+import math
+growth_rate = math.log(2)/22.5
+print(growth_rate*1.20)
+
+print(math.log(2)/0.008)
+```
+
+    0.03696784962986375
+    86.64339756999316
+
 
 
 ```python
@@ -88,6 +102,49 @@ hacat_model.reactions.biomass_reaction.upper_bound=0.037
 fba_solution = hacat_model.optimize()
 hacat_model.optimize()
 ```
+
+
+    ---------------------------------------------------------------------------
+
+    KeyError                                  Traceback (most recent call last)
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in __getattr__(self, attr)
+        447         try:
+    --> 448             return DictList.get_by_id(self, attr)
+        449         except KeyError:
+
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in get_by_id(self, id)
+         53         """return the element with a matching id"""
+    ---> 54         return list.__getitem__(self, self._dict[id])
+         55 
+
+
+    KeyError: 'EX_glc_LPAREN_e_RPAREN_'
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-9-0f1e34e7386a> in <module>()
+         29 ### DMEM 6429 medium
+         30 #Carbon Sources
+    ---> 31 hacat_model.reactions.EX_glc_LPAREN_e_RPAREN_.lower_bound=-4.5
+         32 hacat_model.reactions.EX_pyr_LPAREN_e_RPAREN_.lower_bound= -1
+         33 
+
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in __getattr__(self, attr)
+        449         except KeyError:
+        450             raise AttributeError("DictList has no attribute or entry %s" %
+    --> 451                                  attr)
+        452 
+        453     def __dir__(self):
+
+
+    AttributeError: DictList has no attribute or entry EX_glc_LPAREN_e_RPAREN_
 
 
 
@@ -178,6 +235,47 @@ closedModel.reactions.EX_glc_LPAREN_e_RPAREN_.bounds=(-1,-1)
 closedModel.optimize()
 ```
 
+
+    ---------------------------------------------------------------------------
+
+    KeyError                                  Traceback (most recent call last)
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in __getattr__(self, attr)
+        447         try:
+    --> 448             return DictList.get_by_id(self, attr)
+        449         except KeyError:
+
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in get_by_id(self, id)
+         53         """return the element with a matching id"""
+    ---> 54         return list.__getitem__(self, self._dict[id])
+         55 
+
+
+    KeyError: 'EX_glc_LPAREN_e_RPAREN_'
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-8-b3b984bf7ac6> in <module>()
+         28 closedModel.reactions.EX_h2o_LPAREN_e_RPAREN_.bounds=(-1000,1000)
+         29 closedModel.reactions.EX_co2_LPAREN_e_RPAREN_.bounds=(-0.0,1000)
+    ---> 30 closedModel.reactions.EX_glc_LPAREN_e_RPAREN_.bounds=(-1,-1)
+         31 closedModel.optimize()
+
+
+    /opt/conda/lib/python3.5/site-packages/cobra/core/dictlist.py in __getattr__(self, attr)
+        449         except KeyError:
+        450             raise AttributeError("DictList has no attribute or entry %s" %
+    --> 451                                  attr)
+        452 
+        453     def __dir__(self):
+
+
+    AttributeError: DictList has no attribute or entry EX_glc_LPAREN_e_RPAREN_
 
 
 
