@@ -2,6 +2,7 @@
 
 ```python
 import cobra
+import math
 #!wget http://www.ebi.ac.uk/biomodels-main/download?mid=MODEL1603150001 -O recon2.2.xml
 Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 ```
@@ -12,19 +13,6 @@ Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 hacat_model=cobra.io.read_sbml_model("Models/hgu133APlus2_hacat_model_0418_DEMEM6429_n5.sbml")
 
 ```
-
-
-```python
-import math
-growth_rate = math.log(2)/22.5
-print(growth_rate*1.20)
-
-print(math.log(2)/0.008)
-```
-
-    0.03696784962986375
-    86.64339756999316
-
 
 
 ```python
