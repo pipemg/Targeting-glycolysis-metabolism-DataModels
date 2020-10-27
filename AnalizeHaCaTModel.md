@@ -6,8 +6,6 @@ import cobra
 Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 ```
 
-    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
-
 
 
 ```python
