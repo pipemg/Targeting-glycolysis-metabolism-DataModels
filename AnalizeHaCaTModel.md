@@ -493,15 +493,6 @@ for rx in closedModel.reactions:
 ```
 
 
-```python
-#Glycolysis
-parsFBA=
-```
-
-
-```python
-
-```
 
 
 ```python
