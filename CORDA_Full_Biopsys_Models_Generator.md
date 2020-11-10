@@ -488,10 +488,6 @@ confidence_scores_matrix["MeanNormalBiopsy"].hist(bins=10)
 confidence_scores_matrix["MeanCancerBiopsy"].hist(bins=10)
 ```
 
-
-
-
-
 ![png](output_11_1.png)
 
 
