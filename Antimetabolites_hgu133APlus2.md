@@ -1,4 +1,7 @@
 
+# Análisis de antimetabolitos
+
+Leer los modelos generados
 
 ```python
 import cobra
@@ -13,33 +16,18 @@ hgu133APlus2_normal=cobra.io.read_sbml_model("hgu133APlus2_normal_model_0418_wes
 
 ```
 
-    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
-
-
+Optimización del modelo de cáncer cervico y del modelo normal
 
 ```python
 hgu133APlus2_scc.optimize().f
+hgu133APlus2_normal.optimize().f
+
 ```
-
-
-
 
     0.21625829891222031
-
-
-
-
-```python
-hgu133APlus2_normal.optimize().f
-```
-
-
-
-
     0.12867308030486935
 
-
-
+## Calculo de antimetabolitos
 
 ```python
 import pandas as pd
@@ -123,6 +111,7 @@ def get_antimeteabolites_targets(normal_Model, disease_Model, model_name,  eps=0
     return(pd.DataFrame(results).transpose())
 ```
 
+Estadisticas generales del análisis de antimetabolitos
 
 ```python
 antimets = get_antimeteabolites_targets(hgu133APlus2_normal, hgu133APlus2_scc, "hgu133APlus2_biopsys" )
@@ -134,45 +123,4 @@ antimets = get_antimeteabolites_targets(hgu133APlus2_normal, hgu133APlus2_scc, "
     Normal unique reactions size 524
     Disease unique metabolites size 0
     Disease unique reactions size 614
-
-
-
-```python
-antimets[antimets["norm_dise_ratio"]>1]
-```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>dise_flux</th>
-      <th>dise_prolif_ratio</th>
-      <th>model</th>
-      <th>norm_dise_ratio</th>
-      <th>norm_flux</th>
-      <th>norm_prolif_ratio</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-
 

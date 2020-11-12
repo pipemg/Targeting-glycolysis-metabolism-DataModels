@@ -11,10 +11,7 @@ CORDA manages a total of 5 confidence levels:
 + 3 for high confidence reactions that must be included if possible in any way
 
 The most tedious step here is usaully mapping the confidence for genes or proteins to the distinct reactions. Many of the larger models come with gene-reaction rules in the form
-gene1 and gene2 or (gene3 and gene4)
-and the individual confidence values have to be mapped from the gene confidence levels. Here "and" is evaluated by the minimum confidence and "or" by the maximum confidence. The Python package includes a handy function to do this for you automatically in a safe manner. For that you will require the gene-reaction rule (Recon 1 and 2 include them in their model for instance) and a dictionary mapping genes/proteins to their confidence values. For examples:
-In [1]:
-
+gene1 and gene2 or (gene3 and gene4) and the individual confidence values have to be mapped from the gene confidence levels. 
 
 ### Load the ubiquitin scores of the microarrays
 
@@ -29,9 +26,6 @@ import cobra
 Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 #Recon204 = cobra.io.load_matlab_model("Models/Recon2.v04.mat")
 ```
-
-    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
-
 
 
 ```python
@@ -60,18 +54,11 @@ print(bm.notes)
     0.014 biomass_DNA_c + 0.058 biomass_RNA_c + 0.071 biomass_carbohydrate_c + 0.097 biomass_lipid_c + 0.054 biomass_other_c + 0.706 biomass_protein_c --> 
     {'GENE ASSOCIATION': ['']}
 
-
-
 ```python
 Recon2.optimize()
 ```
 
-
-
-
-    <Solution 555.786 at 0x7f3de2fd3630>
-
-
+    <Solution 555.786 at 0x7f9132f6bf98>
 
 
 ```python
@@ -81,21 +68,16 @@ for rxex in Recon2.exchanges:
 ### Western Diet
 #### Sugars
 Recon2.reactions.EX_arab_L_LPAREN_e_RPAREN_.lower_bound=-0.17878295 
-#Cellobiose not in Human
 Recon2.reactions.EX_drib_LPAREN_e_RPAREN_.lower_bound=-0.17878295 
 Recon2.reactions.EX_fru_LPAREN_e_RPAREN_.lower_bound=-0.14898579
 Recon2.reactions.EX_fuc_L_LPAREN_e_RPAREN_.lower_bound=-0.14898579 
 Recon2.reactions.EX_gal_LPAREN_e_RPAREN_.lower_bound=-0.14898579 
 Recon2.reactions.EX_glc_LPAREN_e_RPAREN_.lower_bound=-0.14898579
-#Falta Ex_glcn en Recon2.2
 Recon2.reactions.EX_lcts_LPAREN_e_RPAREN_.lower_bound=-0.07449289 
 Recon2.reactions.EX_malt_LPAREN_e_RPAREN_.lower_bound=-0.07449289 
 Recon2.reactions.EX_man_LPAREN_e_RPAREN_.lower_bound=-0.14898579 
-#Melibiose  not in Human
-#D-Mannitol not in Human
 Recon2.reactions.EX_oxa_LPAREN_e_RPAREN_.lower_bound=-0.44695737 
 Recon2.reactions.EX_rib_D_LPAREN_e_RPAREN_.lower_bound=-0.17878295 
-#L-Rhamnose not in Human
 Recon2.reactions.EX_sucr_LPAREN_e_RPAREN_.lower_bound=-0.07449289 
 Recon2.reactions.EX_tre_LPAREN_e_RPAREN_.lower_bound=-0.07449289 
 Recon2.reactions.EX_xyl_D_LPAREN_e_RPAREN_.lower_bound=-0.17878295
@@ -104,7 +86,6 @@ Recon2.reactions.EX_strch1_LPAREN_e_RPAREN_.lower_bound=-0.25733909
 #fiber not in human
 
 ### Western Diet
-#### Fat
 Recon2.reactions.EX_arachd_LPAREN_e_RPAREN_.lower_bound=-0.00332813 
 Recon2.reactions.EX_chsterol_LPAREN_e_RPAREN_.lower_bound=-0.00495795
 Recon2.reactions.EX_glyc_LPAREN_e_RPAREN_.lower_bound=-1.79965486 
@@ -144,41 +125,28 @@ Recon2.reactions.EX_val_L_LPAREN_e_RPAREN_.lower_bound=-0.18
 ### Western Diet
 #### Minterals, Vitamins, others
 
-#12dgr180
-#26dap_M
-#2dmmq8
-#2obut
+
 Recon2.reactions.EX_3mop_LPAREN_e_RPAREN_.lower_bound=-1
-#4abz
-#4hbz
 Recon2.reactions.EX_ac_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_acgam_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_acmana_LPAREN_e_RPAREN_.lower_bound=-1
-#acnam
 Recon2.reactions.EX_ade_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_adn_LPAREN_e_RPAREN_.lower_bound=-1
-#adocbl
 Recon2.reactions.EX_ala_D_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_amp_LPAREN_e_RPAREN_.lower_bound=-1
-#arab_D
 Recon2.reactions.EX_btn_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_ca2_LPAREN_e_RPAREN_.lower_bound=-1
-#cbl1
 Recon2.reactions.EX_cgly_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_chol_LPAREN_e_RPAREN_.lower_bound=-1
-#chor
 Recon2.reactions.EX_cit_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_cl_LPAREN_e_RPAREN_.lower_bound=-1
-#cobalt2
 Recon2.reactions.EX_csn_LPAREN_e_RPAREN_.lower_bound=-1
-#cu2
 Recon2.reactions.EX_dad_2_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_dcyt_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_ddca_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_dgsn_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_fe2_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_fe3_LPAREN_e_RPAREN_.lower_bound=-1
-#fe3dcit
 Recon2.reactions.EX_fald_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_fol_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_for_LPAREN_e_RPAREN_.lower_bound=-1
@@ -191,70 +159,40 @@ Recon2.reactions.EX_gthrd_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_gua_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_h_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_h2o2_LPAREN_e_RPAREN_.lower_bound=-10
-#h2
-#h2s
 Recon2.reactions.EX_hxan_LPAREN_e_RPAREN_.lower_bound=-1
-#indole
 Recon2.reactions.EX_k_LPAREN_e_RPAREN_.lower_bound=-1
-#lanost
 Recon2.reactions.EX_meoh_LPAREN_e_RPAREN_.lower_bound=-10
-#metsox_S_L
-#mg2
-#mn2
-#mobd
-#mqn8
 Recon2.reactions.EX_na1_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_nac_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_ncam_LPAREN_e_RPAREN_.lower_bound=-1
-#nmn nmn_e doesn't exists in Recon 2.2 
 Recon2.reactions.EX_no2_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_orn_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_pheme_LPAREN_e_RPAREN_.lower_bound=-1
 
 Recon2.reactions.EX_pi_LPAREN_e_RPAREN_.lower_bound=-1
-#Pimelate  not in Human
 Recon2.reactions.EX_pnto_R_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_ptrc_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_pydam_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_pydx_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_pydx5p_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_pydxn_LPAREN_e_RPAREN_.lower_bound=-1
-#ubiquinone-8 not in Human
 Recon2.reactions.EX_ribflv_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_sel_LPAREN_e_RPAREN_.lower_bound=-1
-#Siroheme not in Human
 Recon2.reactions.EX_so4_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_spmd_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_thm_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_thymd_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_ura_LPAREN_e_RPAREN_.lower_bound=-1
 Recon2.reactions.EX_uri_LPAREN_e_RPAREN_.lower_bound=-1
-#Xanthine not in Human
-#zn2 not in Human
-
 #Recon2.reactions.biomass_reaction.lower_bound=0.008
 #Recon2.reactions.biomass_reaction.upper_bound=0.1
 ```
-
-#extra #HMDB
-Recon2.reactions.EX_xylt_LPAREN_e_RPAREN_.lower_bound=-0.1 #0.7
-Recon2.reactions.r0408.upper_bound=0
-Recon2.reactions.r0408.lower_bound=0
-Recon2.reactions.EX_HC00250_LPAREN_e_RPAREN_.lower_bound=0
-Recon2.reactions.EX_HC00250_LPAREN_e_RPAREN_.upper_bound=0
-
-
 
 ```python
 Recon2.optimize()
 ```
 
-
-
-
     <Solution 0.270 at 0x7f3e151f6ac8>
-
-
 
 
 ```python
@@ -263,9 +201,6 @@ ub_scores_matrix =pd.read_csv("Binary_CellLines_RECON2_2.tsv",sep=",",index_col=
 confidence_scores_matrix=ub_scores_matrix
 confidence_scores_matrix.head()
 ```
-
-
-
 
 <div>
 <style>
@@ -384,29 +319,10 @@ for model in ub_scores_matrix.columns:
 ```
 
 
-```python
-list(confidence_scores_matrix)
-```
 
-
-
-
-    ['HeLaHGU133A',
-     'KeratinocytesHGU133A',
-     'HeLaHGU133Plus2',
-     'KeratinocytesHGU133Plus2',
-     'MaxHeLa',
-     'Maxkeratinocytes',
-     'MeanHeLa',
-     'Meankeratinocytes']
-
-
-
-
+Here we define the confidence scores in each model.
 ```python
 from corda import reaction_confidence
-
-
 
 conf_HeLaHGU133A = {}
 conf_HeLaPlus2 = {}
@@ -432,6 +348,7 @@ for r in Recon2.reactions:
 
 ```
 
+We defineed the biomass reactions to necessary reactions.
 
 ```python
 conf_HeLaHGU133A["biomass_reaction"]=3
@@ -467,22 +384,21 @@ conf_keratinocytesPlus2["biomass_lipid"]=3
 conf_keratinocytesPlus2["biomass_other"]=3
 conf_keratinocytesPlus2["biomass_protein"]=3
 
-
-
 Recon2.objective="biomass_reaction"
 ```
 
+Principal metabolites
 
 ```python
 metas = ['adp_c','atp_c', 'glc_D_c',  'fru_c','nad_c', 'nadh_c','nad_m', 'nadh_m','nadph_c', 'nadph_m', 'nadp_c', 'nadp_m', 'cmp_c', 'HC00342_c', 'glcn_c', 'citr_L_c', 'glyb_c', 'icit_c', '3pg_c', 'accoa_m ->coa_m', 'akg_m', 'e4p_c', 'f6p_c', 'g3p_c', 'g6p_c', 'oaa_m', 'pep_c', 'pyr_c', 'r5p_c', 'succoa_m ->coa_m', 'ala_L_c', 'arg_L_c', 'asn_L_c', 'asp_L_c', 'val_L_c', 'adp_c', 'thr_L_c', 'leu_L_c', 'gln_L_c', 'glu_L_c', 'gly_c', 'pro_D_c', 'pro_L_c', 'ser_L_c', 'ctp_c', 'fdp_c','utp_c', 'pmtcoa_c -> coa_c', 'chsterol_c', 'dag_hs_c', 'tag_hs_c', 'mag_hs_c', 'gthox_c','gthrd_c','ru5p_D_c','crm_hs_c', 'pa_hs_c', 'pe_hs_c', 'ps_hs_c', 'hxan_c', 'creat_c', 'crtn_c', 'chol_c', 'orn_c', '4hpro_LT_c', 's7p_c', 'amp_c', 'udp_c', 'ade_c', 'asp_D_c', 'adn_c', 'ump_c', 'his_L_c', 'tyr_L_c', 'phe_L_c', 'gdp_c', 'ctp_c', 'cys_L_c', 'amet_c', 'cit_c', 'tym_c', 'succ_c', 'CE1936_c', 'gua_c', 'cdp_c', 'g1p_c', 'lys_L_c', 'bhb_c', 'ile_L_c', 'gmp_c', 'dhap_c', 'fum_c', 'mal_L_c', 'spmd_c', 'ala_B_c', 'trp_L_c', 'lac_L_c', 'met_L_c', 'ptrc_c', '4abut_c']
 ```
 
+Run corda for the HELA model
 
 ```python
 %%time
 
 from corda import CORDA
-
 
 
 opt_HeLaHGU133A = CORDA(model=Recon2, confidence=conf_HeLaHGU133A, n=5, met_prod=metas,  penalty_factor=1000) 
@@ -493,6 +409,7 @@ print(model_HeLaHGU133A.optimize())
 
 
 ```
+Result of the model
 
     build status: reconstruction complete
     Inc. reactions: 1963/7885
@@ -504,7 +421,6 @@ print(model_HeLaHGU133A.optimize())
     <Solution 0.108 at 0x7f3de0ad0518>
     CPU times: user 10min 18s, sys: 444 ms, total: 10min 18s
     Wall time: 10min 18s
-
 
 
 ```python
@@ -533,6 +449,7 @@ print(model_HeLaPlus2.optimize())
     Wall time: 19min 52s
 
 
+Run the CORDA model for the non cancer cell line.
 
 ```python
 %%time
@@ -598,9 +515,6 @@ print(model_keratinocytesPlus2.optimize())
 
 
 
-```python
-
-```
 
 
 ```python

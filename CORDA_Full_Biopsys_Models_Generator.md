@@ -1,4 +1,31 @@
+# Generating the biopsis models 
 
+
+### Reactions, Genes and confidences
+
+In order to start a reconstruction CORDA requires you to assign a confidence score to each reaction in your base model. This can be done by a variety of methods, and even by hand, but the most common way is to assign confidence based on proteome or gene expression data.
+CORDA manages a total of 5 confidence levels:
+
++ -1 for reactions that are not present and should not be included in the model
++ 0 for reactions with unknown confidence which may be included in the model if necessary
++ 1 for low confidence reactions that should be included if necessary
++ 2 for medium confidence reactions that should be included if necessary
++ 3 for high confidence reactions that must be included if possible in any way
+
+The most tedious step here is usaully mapping the confidence for genes or proteins to the distinct reactions. Many of the larger models come with gene-reaction rules in the form
+gene1 and gene2 or (gene3 and gene4)
+and the individual confidence values have to be mapped from the gene confidence levels. Here "and" is evaluated by the minimum confidence and "or" by the maximum confidence. The Python package includes a handy function to do this for you automatically in a safe manner. For that you will require the gene-reaction rule (Recon 1 and 2 include them in their model for instance) and a dictionary mapping genes/proteins to their confidence values. 
+
+
+### Load the ubiquitin scores of the microarrays
+
+#### Definitions
+   If we have a matrix M where rows are unique genes and columns are samples (cancer samples for example) we define g[i,j] as the gene i in the sample j where g[i,j] in {0,1}  where 0 means a gene that is "Off" in the sample and 1 represents "On".
+   Whith this we calculate the percentil (0 to 1) of each row (genes) and this will be the ubiquitin score for gene i in the model, this score represents the number of times a gene is considered on or off in that specific data, and we do this for each model we whant to do. 
+
+
+In order to create the models of cervix biopsis samples we use
+the MODEL1603150001 of biomodels, recon2.2. with a rule correction
 
 ```python
 import cobra
@@ -11,6 +38,7 @@ Recon2.reactions.OIVD2m.gene_reaction_rule='HGNC:2698 and HGNC:987 and HGNC:986 
 ```
 
 
+Structure of metabolic reactions
 
 ```python
 print("Reactions:", len(Recon2.reactions))

@@ -12,8 +12,7 @@ CORDA manages a total of 5 confidence levels:
 
 The most tedious step here is usaully mapping the confidence for genes or proteins to the distinct reactions. Many of the larger models come with gene-reaction rules in the form
 gene1 and gene2 or (gene3 and gene4)
-and the individual confidence values have to be mapped from the gene confidence levels. Here "and" is evaluated by the minimum confidence and "or" by the maximum confidence. The Python package includes a handy function to do this for you automatically in a safe manner. For that you will require the gene-reaction rule (Recon 1 and 2 include them in their model for instance) and a dictionary mapping genes/proteins to their confidence values. For examples:
-In [1]:
+and the individual confidence values have to be mapped from the gene confidence levels. Here "and" is evaluated by the minimum confidence and "or" by the maximum confidence. The Python package includes a handy function to do this for you automatically in a safe manner. For that you will require the gene-reaction rule (Recon 1 and 2 include them in their model for instance) and a dictionary mapping genes/proteins to their confidence values. 
 
 
 ### Load the ubiquitin scores of the microarrays
@@ -31,7 +30,6 @@ Recon2 = cobra.io.read_sbml_model("Models/recon2.2.xml")
 Recon1 = cobra.io.read_sbml_model("Models/RECON1.xml")
 ```
 
-    cobra/io/sbml.py:235 [1;31mUserWarning[0m: M_h_x appears as a reactant and product FAOXC220200x
 
 
 
@@ -67,13 +65,7 @@ print(bm.notes)
 Recon2.optimize()
 ```
 
-
-
-
     <Solution 555.786 at 0x7f9132f6bf98>
-
-
-
 
 ```python
 for rxex in Recon2.exchanges:
@@ -82,27 +74,21 @@ for rxex in Recon2.exchanges:
 ### Western Diet
 #### Sugars
 Recon2.reactions.get_by_id("EX_arab_L_LPAREN_e_RPAREN_").lower_bound=-0.17878295 
-#Cellobiose not in Human
 Recon2.reactions.get_by_id("EX_drib_LPAREN_e_RPAREN_").lower_bound=-0.17878295 
 Recon2.reactions.get_by_id("EX_fru_LPAREN_e_RPAREN_").lower_bound=-0.14898579
 Recon2.reactions.get_by_id("EX_fuc_L_LPAREN_e_RPAREN_").lower_bound=-0.14898579 
 Recon2.reactions.get_by_id("EX_gal_LPAREN_e_RPAREN_").lower_bound=-0.14898579 
 Recon2.reactions.get_by_id("EX_glc_LPAREN_e_RPAREN_").lower_bound=-0.14898579
-#Falta Ex_glcn en Recon2.2
 Recon2.reactions.get_by_id("EX_lcts_LPAREN_e_RPAREN_").lower_bound=-0.07449289 
 Recon2.reactions.get_by_id("EX_malt_LPAREN_e_RPAREN_").lower_bound=-0.07449289 
 Recon2.reactions.get_by_id("EX_man_LPAREN_e_RPAREN_").lower_bound=-0.14898579 
-#Melibiose  not in Human
-#D-Mannitol not in Human
 Recon2.reactions.get_by_id("EX_oxa_LPAREN_e_RPAREN_").lower_bound=-0.44695737 
 Recon2.reactions.get_by_id("EX_rib_D_LPAREN_e_RPAREN_").lower_bound=-0.17878295 
-#L-Rhamnose not in Human
 Recon2.reactions.get_by_id("EX_sucr_LPAREN_e_RPAREN_").lower_bound=-0.07449289 
 Recon2.reactions.get_by_id("EX_tre_LPAREN_e_RPAREN_").lower_bound=-0.07449289 
 Recon2.reactions.get_by_id("EX_xyl_D_LPAREN_e_RPAREN_").lower_bound=-0.17878295
 Recon2.reactions.get_by_id("EX_strch1_LPAREN_e_RPAREN_").lower_bound=-0.25733909 
 
-#fiber not in human
 
 ### Western Diet
 #### Fat
@@ -145,41 +131,27 @@ Recon2.reactions.get_by_id("EX_val_L_LPAREN_e_RPAREN_").lower_bound=-0.18
 ### Western Diet
 #### Minterals, Vitamins, others
 
-#12dgr180
-#26dap_M
-#2dmmq8
-#2obut
 Recon2.reactions.get_by_id("EX_3mop_LPAREN_e_RPAREN_").lower_bound=-1
-#4abz
-#4hbz
 Recon2.reactions.get_by_id("EX_ac_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_acgam_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_acmana_LPAREN_e_RPAREN_").lower_bound=-1
-#acnam
 Recon2.reactions.get_by_id("EX_ade_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_adn_LPAREN_e_RPAREN_").lower_bound=-1
-#adocbl
 Recon2.reactions.get_by_id("EX_ala_D_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_amp_LPAREN_e_RPAREN_").lower_bound=-1
-#arab_D
 Recon2.reactions.get_by_id("EX_btn_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_ca2_LPAREN_e_RPAREN_").lower_bound=-1
-#cbl1
 Recon2.reactions.get_by_id("EX_cgly_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_chol_LPAREN_e_RPAREN_").lower_bound=-1
-#chor
 Recon2.reactions.get_by_id("EX_cit_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_cl_LPAREN_e_RPAREN_").lower_bound=-1
-#cobalt2
 Recon2.reactions.get_by_id("EX_csn_LPAREN_e_RPAREN_").lower_bound=-1
-#cu2
 Recon2.reactions.get_by_id("EX_dad_2_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_dcyt_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_ddca_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_dgsn_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_fe2_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_fe3_LPAREN_e_RPAREN_").lower_bound=-1
-#fe3dcit
 Recon2.reactions.get_by_id("EX_fald_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_fol_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_for_LPAREN_e_RPAREN_").lower_bound=-1
@@ -192,46 +164,31 @@ Recon2.reactions.get_by_id("EX_gthrd_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_gua_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_h_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_h2o2_LPAREN_e_RPAREN_").lower_bound=-10
-#h2
-#h2s
 Recon2.reactions.get_by_id("EX_hxan_LPAREN_e_RPAREN_").lower_bound=-1
-#indole
 Recon2.reactions.get_by_id("EX_k_LPAREN_e_RPAREN_").lower_bound=-1
-#lanost
 Recon2.reactions.get_by_id("EX_meoh_LPAREN_e_RPAREN_").lower_bound=-10
-#metsox_S_L
-#mg2
-#mn2
-#mobd
-#mqn8
 Recon2.reactions.get_by_id("EX_na1_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_nac_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_ncam_LPAREN_e_RPAREN_").lower_bound=-1
-#nmn nmn_e doesn't exists in Recon 2.2 
 Recon2.reactions.get_by_id("EX_no2_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_orn_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_pheme_LPAREN_e_RPAREN_").lower_bound=-1
 
 Recon2.reactions.get_by_id("EX_pi_LPAREN_e_RPAREN_").lower_bound=-1
-#Pimelate  not in Human
 Recon2.reactions.get_by_id("EX_pnto_R_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_ptrc_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_pydam_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_pydx_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_pydx5p_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_pydxn_LPAREN_e_RPAREN_").lower_bound=-1
-#ubiquinone-8 not in Human
 Recon2.reactions.get_by_id("EX_ribflv_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_sel_LPAREN_e_RPAREN_").lower_bound=-1
-#Siroheme not in Human
 Recon2.reactions.get_by_id("EX_so4_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_spmd_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_thm_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_thymd_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_ura_LPAREN_e_RPAREN_").lower_bound=-1
 Recon2.reactions.get_by_id("EX_uri_LPAREN_e_RPAREN_").lower_bound=-1
-#Xanthine not in Human
-#zn2 not in Human
 
 #Recon2.reactions.biomass_reaction.lower_bound=0.008
 #Recon2.reactions.biomass_reaction.upper_bound=0.1
@@ -239,17 +196,13 @@ Recon2.reactions.get_by_id("EX_uri_LPAREN_e_RPAREN_").lower_bound=-1
 
 ```
 
+New optimal value with the medium bounds.
 
 ```python
 Recon2.optimize()
 ```
 
-
-
-
-    <Solution 0.270 at 0x7f91331aae10>
-
-
+ <Solution 0.270 at 0x7f91331aae10>
 
 
 ```python
@@ -258,9 +211,6 @@ ub_scores_matrix =pd.read_csv("Binary_Byposys_RECON2_2.tsv",sep=",",index_col=0,
 confidence_scores_matrix=ub_scores_matrix
 confidence_scores_matrix.head()
 ```
-
-
-
 
 <div>
 <style>
